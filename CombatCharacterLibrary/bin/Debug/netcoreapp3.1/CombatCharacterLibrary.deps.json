@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "CombatCharacterLibrary/1.0.0": {
+        "runtime": {
+          "CombatCharacterLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CombatCharacterLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
