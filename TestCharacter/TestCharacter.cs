@@ -1,4 +1,4 @@
-using CombatCharacter;
+using CombatCharacterLibrary;
 using System;
 using Xunit;
 
@@ -11,8 +11,22 @@ namespace TestCharacter
         [Fact]
         public void CurrentHealthOfCharacter()
         {
-            CombatCharacters combatCharacter = new CombatCharacters();
+            CombatCharacter combatCharacter = new CombatCharacter();
             Assert.Equal(1000,combatCharacter.health);
+        }
+
+        [Fact]
+        public void CurrentLevelOfCharacter()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            Assert.Equal(1, combatCharacter.level);
+        }
+
+        [Fact]
+        public void CurrentStateOfCharacter()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            Assert.True(combatCharacter.alive);
         }
     }
  
