@@ -8,9 +8,25 @@ namespace CombatCharacterLibrary
         public int level { get; set; } = 1;
         public bool alive { get; set; } = true;
 
-        //public DateTime GetSupplierDispatchDate(DateTime orderdate)
-        //{
-        //    return orderdate.AddBusinessDays(LeadTime);
-        //}
+        public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
+        {
+            if (victim.alive == true)
+            {
+
+                victim.health -= amountOfDamage;
+                if (victim.health < 0)
+                {
+                    victim.health = 0;
+                }
+                if (victim.health == 0)
+                {
+                    victim.alive = false;
+                }
+            }
+
+
+            return victim;
+
+        }
     }
 }
