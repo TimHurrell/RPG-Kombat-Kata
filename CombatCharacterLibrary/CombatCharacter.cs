@@ -18,15 +18,29 @@ namespace CombatCharacterLibrary
                 {
                     victim.health = 0;
                 }
-                if (victim.health == 0)
-                {
-                    victim.alive = false;
-                }
+                victim.alive = MakeDead(health);
+                
             }
 
 
             return victim;
 
         }
+
+
+        public bool MakeDead(int healthvalue)
+        {
+            bool alive;
+            alive = true;
+            if (healthvalue == 0)
+            {
+                alive = false;
+            }
+
+
+            return alive;
+        }
+
+
     }
 }
