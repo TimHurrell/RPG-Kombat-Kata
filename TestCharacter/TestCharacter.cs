@@ -58,6 +58,16 @@ namespace TestCharacter
             combatCharacterDamaged.alive = combatCharacter.MakeDead(0);
             Assert.False(combatCharacterDamaged.alive);
         }
+
+
+        [Fact]
+        public void EnhanceCharacterHealth()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterEnhanced = new CombatCharacter();
+            combatCharacter.EnhancesHealth(combatCharacterEnhanced, 100);
+            Assert.Equal(1000, combatCharacterEnhanced.health);
+        }
     }
  
 }

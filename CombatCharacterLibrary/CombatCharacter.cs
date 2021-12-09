@@ -42,5 +42,24 @@ namespace CombatCharacterLibrary
         }
 
 
+        public CombatCharacter EnhancesHealth(CombatCharacter patient, int amountOfHealth)
+        {
+            if (patient.alive == true)
+            {
+
+                patient.health += amountOfHealth;
+                if (patient.health > 1000)
+                {
+                    patient.health = 1000;
+                }
+
+            }
+
+
+            return patient;
+
+        }
+
+
     }
 }
