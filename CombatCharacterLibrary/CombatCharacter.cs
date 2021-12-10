@@ -14,11 +14,10 @@ namespace CombatCharacterLibrary
             {
 
                 victim.health -= amountOfDamage;
-                if (victim.health < 0)
-                {
-                    victim.health = 0;
-                }
-                victim.alive = MakeDead(health);
+               
+                victim.health = victim.health < 0 ? victim.health = 0 : victim.health;
+
+                victim.alive = MakeDead(victim.health);
                 
             }
 
@@ -32,12 +31,7 @@ namespace CombatCharacterLibrary
         {
             bool alive;
             alive = true;
-            if (healthvalue == 0)
-            {
-                alive = false;
-            }
-
-
+            alive = healthvalue == 0 ? alive = false : alive;
             return alive;
         }
 
@@ -46,20 +40,10 @@ namespace CombatCharacterLibrary
         {
             if (patient.alive == true)
             {
-
                 patient.health += amountOfHealth;
-                if (patient.health > 1000)
-                {
-                    patient.health = 1000;
-                }
-
+                patient.health = patient.health > 1000 ? patient.health = 1000 : patient.health;
             }
-
-
             return patient;
-
         }
-
-
     }
 }

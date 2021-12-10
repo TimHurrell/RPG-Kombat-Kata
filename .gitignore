@@ -338,3 +338,10 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+#Myfolders
+CombatCharacterLibrary/bin/
+CombatCharacterLibrary/obj/
+TestCharacter/bin/
+TestCharacter/obj/
+.vs/
