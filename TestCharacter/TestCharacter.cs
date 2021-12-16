@@ -125,6 +125,39 @@ namespace TestCharacter
             CombatCharacter combatCharacterDamaged = new CombatCharacter();
             Assert.Equal(1.0, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
         }
+
+        [Fact]
+        public void DamageIncreased()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacter.level = 6;
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            Assert.Equal(850, combatCharacterDamaged.health);
+        }
+
+
+        [Fact]
+        public void DamageDecrease()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacterDamaged.level = 6;
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            Assert.Equal(950, combatCharacterDamaged.health);
+        }
+
+
+        [Fact]
+        public void DamageSame()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacter.level = 6;
+            combatCharacterDamaged.level = 5;
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            Assert.Equal(900, combatCharacterDamaged.health);
+        }
     }
 
 

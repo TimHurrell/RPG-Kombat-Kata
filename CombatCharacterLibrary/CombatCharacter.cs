@@ -5,17 +5,17 @@ namespace CombatCharacterLibrary
     public class CombatCharacter
     {
   
-        public int health { get; private set; } = 1000;
+        public float health { get; private set; } = 1000;
         public int level { get; set; } = 1;
         public bool alive { get; set; } = true;
 
 
-        public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
+        public CombatCharacter CausesDamage(CombatCharacter victim, float amountOfDamage)
         {
             if (victim.alive == true & victim.GetHashCode() != GetHashCode())
             {
 
-                victim.health -= amountOfDamage;
+                victim.health -= amountOfDamage * DamageFactorMultiplier(victim.level);
                
                 victim.health = victim.health < 0 ? victim.health = 0 : victim.health;
 
@@ -29,7 +29,7 @@ namespace CombatCharacterLibrary
         }
 
 
-        public bool MakeDead(int healthvalue)
+        public bool MakeDead(float healthvalue)
         {
             bool alive;
             alive = true;
