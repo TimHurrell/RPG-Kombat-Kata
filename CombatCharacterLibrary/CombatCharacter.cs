@@ -47,5 +47,25 @@ namespace CombatCharacterLibrary
             }
             return patient;
         }
+
+
+        public float DamageFactorMultiplier(int levelVictim)
+        {
+            float damageFactor;
+            if (level - levelVictim >= 5)
+            {
+                damageFactor = 1.5F;
+            }
+            else if (level - levelVictim <= -5)
+            {
+                damageFactor = 0.5F;
+            }
+            else
+            {
+                damageFactor = 1.0F;
+            }
+            return damageFactor;
+
+        }
     }
 }

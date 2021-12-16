@@ -97,6 +97,34 @@ namespace TestCharacter
             combatCharacterEnhanced.EnhancesHealth(combatCharacterEnhanced, 100);
             Assert.Equal(1000, combatCharacterEnhanced.health);
         }
+
+        [Fact]
+        public void DamageFactorIncrease()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacter.level = 6;
+            Assert.Equal(1.5, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
+        }
+
+
+        [Fact]
+        public void DamageFactorDecrease()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacterDamaged.level = 6;
+            Assert.Equal(0.5, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
+        }
+
+
+        [Fact]
+        public void DamageFactorSame()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            Assert.Equal(1.0, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
+        }
     }
 
 
