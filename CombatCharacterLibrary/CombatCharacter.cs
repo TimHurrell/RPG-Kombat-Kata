@@ -4,20 +4,15 @@ namespace CombatCharacterLibrary
 {
     public class CombatCharacter
     {
-        public Guid InstanceID { get; private set; }
+  
         public int health { get; private set; } = 1000;
         public int level { get; set; } = 1;
         public bool alive { get; set; } = true;
 
 
-        public CombatCharacter()
-        {
-            this.InstanceID = Guid.NewGuid();
-        }
-
         public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
         {
-            if (victim.alive == true & victim.InstanceID != InstanceID)
+            if (victim.alive == true & victim.GetHashCode() != GetHashCode())
             {
 
                 victim.health -= amountOfDamage;
@@ -45,7 +40,7 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter EnhancesHealth(CombatCharacter patient, int amountOfHealth)
         {
-            if (patient.alive == true & patient.InstanceID == InstanceID)
+            if (patient.alive == true & patient.GetHashCode() == GetHashCode())
             {
                 patient.health += amountOfHealth;
                 patient.health = patient.health > 1000 ? patient.health = 1000 : patient.health;
