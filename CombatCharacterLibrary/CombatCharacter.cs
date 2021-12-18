@@ -12,14 +12,14 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter CausesDamage(CombatCharacter victim, float amountOfDamage)
         {
-            if (victim.alive == true & victim.GetHashCode() != GetHashCode())
+            if (victim.alive & victim.GetHashCode() != GetHashCode())
             {
 
                 victim.health -= amountOfDamage * DamageFactorMultiplier(victim.level);
                
                 victim.health = victim.health < 0 ? victim.health = 0 : victim.health;
 
-                victim.alive = MakeDead(victim.health);
+                victim.alive = victim.health == 0 ? victim.alive = false : victim.alive;
                 
             }
 
@@ -29,18 +29,9 @@ namespace CombatCharacterLibrary
         }
 
 
-        public bool MakeDead(float healthvalue)
-        {
-            bool alive;
-            alive = true;
-            alive = healthvalue == 0 ? alive = false : alive;
-            return alive;
-        }
-
-
         public CombatCharacter EnhancesHealth(CombatCharacter patient, int amountOfHealth)
         {
-            if (patient.alive == true & patient.GetHashCode() == GetHashCode())
+            if (patient.alive & patient.GetHashCode() == GetHashCode())
             {
                 patient.health += amountOfHealth;
                 patient.health = patient.health > 1000 ? patient.health = 1000 : patient.health;

@@ -50,15 +50,6 @@ namespace TestCharacter
         }
 
 
-        [Fact]
-        public void MakeDeadTest()
-        {
-            CombatCharacter combatCharacter = new CombatCharacter();
-            CombatCharacter combatCharacterDamaged = new CombatCharacter();
-            combatCharacterDamaged.alive = combatCharacter.MakeDead(0);
-            Assert.False(combatCharacterDamaged.alive);
-        }
-
 
         [Fact]
         public void EnhanceDifferentCharacterHealth()
