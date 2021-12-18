@@ -57,7 +57,7 @@ namespace TestCharacter
             CombatCharacter combatCharacter = new CombatCharacter();
             CombatCharacter combatCharacterEnhanced = new CombatCharacter();
             combatCharacter.CausesDamage(combatCharacterEnhanced, 100);
-            combatCharacter.EnhancesHealth(combatCharacterEnhanced, 100);
+            combatCharacter.Heals(combatCharacterEnhanced, 100);
             Assert.Equal(900, combatCharacterEnhanced.health);
         }
 
@@ -77,7 +77,7 @@ namespace TestCharacter
             CombatCharacter combatCharacter = new CombatCharacter();
             CombatCharacter combatCharacterEnhanced = new CombatCharacter();
             combatCharacter.CausesDamage(combatCharacterEnhanced, 100);
-            combatCharacterEnhanced.EnhancesHealth(combatCharacterEnhanced, 100);
+            combatCharacterEnhanced.Heals(combatCharacterEnhanced, 100);
             Assert.Equal(1000, combatCharacterEnhanced.health);
         }
 
@@ -85,7 +85,7 @@ namespace TestCharacter
         public void EnhanceCharacterSelfHealthBeyond1000()
         {
             CombatCharacter combatCharacterEnhanced = new CombatCharacter();
-            combatCharacterEnhanced.EnhancesHealth(combatCharacterEnhanced, 100);
+            combatCharacterEnhanced.Heals(combatCharacterEnhanced, 100);
             Assert.Equal(1000, combatCharacterEnhanced.health);
         }
 
@@ -95,7 +95,7 @@ namespace TestCharacter
             CombatCharacter combatCharacter = new CombatCharacter();
             CombatCharacter combatCharacterDamaged = new CombatCharacter();
             combatCharacter.level = 6;
-            Assert.Equal(1.5, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
+            Assert.Equal(1.5m, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
         }
 
 
@@ -105,7 +105,7 @@ namespace TestCharacter
             CombatCharacter combatCharacter = new CombatCharacter();
             CombatCharacter combatCharacterDamaged = new CombatCharacter();
             combatCharacterDamaged.level = 6;
-            Assert.Equal(0.5, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
+            Assert.Equal(0.5m, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
         }
 
 
@@ -114,7 +114,7 @@ namespace TestCharacter
         {
             CombatCharacter combatCharacter = new CombatCharacter();
             CombatCharacter combatCharacterDamaged = new CombatCharacter();
-            Assert.Equal(1.0, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
+            Assert.Equal(1.0m, combatCharacter.DamageFactorMultiplier(combatCharacterDamaged.level));
         }
 
         [Fact]
