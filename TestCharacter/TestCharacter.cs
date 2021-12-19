@@ -149,6 +149,18 @@ namespace TestCharacter
             combatCharacter.CausesDamage(combatCharacterDamaged, 100);
             Assert.Equal(900, combatCharacterDamaged.health);
         }
+
+
+
+        [Fact]
+        public void DistanceOfCharacter()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacter.location[0, 0] = 3;
+            combatCharacter.location[0, 1] = 4;
+            Assert.Equal(5, combatCharacter.GetDistanceFromVictim(combatCharacterDamaged.location));
+        }
     }
 
 

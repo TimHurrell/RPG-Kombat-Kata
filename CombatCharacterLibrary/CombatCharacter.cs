@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CombatCharacterLibrary
 {
@@ -8,6 +9,8 @@ namespace CombatCharacterLibrary
         public int health { get; private set; } = 1000;
         public int level { get; set; } = 1;
         public bool alive { get; set; } = true;
+
+        public int[,] location = new int[1,2] { { 0, 0 }};
 
 
         public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
@@ -58,6 +61,12 @@ namespace CombatCharacterLibrary
             }
             return damageFactor;
 
+        }
+
+        public int GetDistanceFromVictim(int[,] locationVictim)
+        {
+            var distance = Math.Sqrt((Math.Pow(locationVictim[0,0] - location[0, 0], 2) + Math.Pow(locationVictim[0, 1] - location[0, 1], 2)));
+            return (int)distance;
         }
     }
 }
