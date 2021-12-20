@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CombatCharacterLibrary
 {
-    public class CombatCharacter
+    public abstract class CombatCharacter
     {
   
         public int health { get; private set; } = 1000;
@@ -11,6 +11,10 @@ namespace CombatCharacterLibrary
         public bool alive { get; set; } = true;
 
         public int[,] location = new int[1,2] { { 0, 0 }};
+
+
+        public abstract int range { get; set; }
+
 
 
         public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
@@ -63,10 +67,8 @@ namespace CombatCharacterLibrary
 
         }
 
-        public int GetDistanceFromVictim(int[,] locationVictim)
-        {
-            var distance = Math.Sqrt((Math.Pow(locationVictim[0,0] - location[0, 0], 2) + Math.Pow(locationVictim[0, 1] - location[0, 1], 2)));
-            return (int)distance;
-        }
-    }
+        public abstract bool InRange(int[,] locationVictim);
+       
+
+}
 }
