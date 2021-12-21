@@ -164,7 +164,7 @@ namespace TestCharacter
 
 
         [Fact]
-        public void CharacterInRangeFalse()
+        public void CharacterInRangeMeleeFalse()
         {
             CombatCharacter combatCharacter = new MeleeCharacter();
             CombatCharacter combatCharacterDamaged = new MeleeCharacter();
@@ -175,13 +175,35 @@ namespace TestCharacter
 
 
         [Fact]
-        public void CharacterInRangeTrue()
+        public void CharacterInRangeMeleeTrue()
         {
             MeleeCharacter combatCharacter = new MeleeCharacter();
             MeleeCharacter combatCharacterDamaged = new MeleeCharacter();
             combatCharacter.location[0, 0] = 1;
             combatCharacter.location[0, 1] = 1;
             Assert.True(combatCharacter.InRange(combatCharacterDamaged.location));
+        }
+
+
+        [Fact]
+        public void CharacterInRangeRangedTrue()
+        {
+            CombatCharacter combatCharacter = new RangedCharacter();
+            CombatCharacter combatCharacterDamaged = new RangedCharacter();
+            combatCharacter.location[0, 0] = 3;
+            combatCharacter.location[0, 1] = 4;
+            Assert.True(combatCharacter.InRange(combatCharacterDamaged.location));
+        }
+
+
+        [Fact]
+        public void CharacterInRangeRangedFalse()
+        {
+            RangedCharacter combatCharacter = new RangedCharacter();
+            RangedCharacter combatCharacterDamaged = new RangedCharacter();
+            combatCharacter.location[0, 0] = 15;
+            combatCharacter.location[0, 1] = 20;
+            Assert.False(combatCharacter.InRange(combatCharacterDamaged.location));
         }
     }
 
