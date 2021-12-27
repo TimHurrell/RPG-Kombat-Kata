@@ -3,31 +3,38 @@ using System.Collections.Generic;
 
 namespace CombatCharacterLibrary
 {
-    public abstract class CombatCharacter
+    public class CombatCharacter
     {
-  
-        public int health { get; private set; } = 1000;
-        public int level { get; set; } = 1;
-        public bool alive { get; set; } = true;
+        public CombatCharacter() { }
+        public CombatCharacter(int health, int level, bool alive)
+        {
+            Health = health;
+            Level = level;
+            Alive = alive;
+        }
 
-        public int[,] location = new int[1,2] { { 0, 0 }};
+        public int Health { get; private set; } = 1000;
+        public int Level { get; private set; } = 1;
+        public bool Alive { get; private set; } = true;
+
+        //public int[,] Location = new int[1,2] { { 0, 0 }};
 
 
-        public abstract int range { get; set; }
+        //public abstract int range { get; set; }
 
 
 
         public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
         {
-            if (victim.alive && victim.GetHashCode() != GetHashCode())
+            if (victim.Alive && victim.GetHashCode() != GetHashCode())
             {
-                decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(victim.level);
-                victim.health -= (int)weighteddamage;
+                decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(victim.Level);
+                victim.Health -= (int)weighteddamage;
 
 
-                victim.health = victim.health < 0 ? victim.health = 0 : victim.health;
+                victim.Health = victim.Health < 0 ? victim.Health = 0 : victim.Health;
 
-                victim.alive = victim.health == 0 ? victim.alive = false : victim.alive;
+                victim.Alive = victim.Health == 0 ? victim.Alive = false : victim.Alive;
                 
             }
 
@@ -39,23 +46,23 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter Heals(CombatCharacter patient, int amountOfHealth)
         {
-            if (patient.alive && patient.GetHashCode() == GetHashCode())
+            if (patient.Alive && patient.GetHashCode() == GetHashCode())
             {
-                patient.health += amountOfHealth;
-                patient.health = patient.health > 1000 ? patient.health = 1000 : patient.health;
+                patient.Health += amountOfHealth;
+                patient.Health = patient.Health > 1000 ? patient.Health = 1000 : patient.Health;
             }
             return patient;
         }
 
 
-        public decimal DamageFactorMultiplier(int levelVictim)
+        public decimal DamageFactorMultiplier(int LevelVictim)
         {
             decimal damageFactor;
-            if (level - levelVictim >= 5)
+            if (Level - LevelVictim >= 5)
             {
                 damageFactor = 1.5M;
             }
-            else if (level - levelVictim <= -5)
+            else if (Level - LevelVictim <= -5)
             {
                 damageFactor = 0.5M;
             }
@@ -67,7 +74,7 @@ namespace CombatCharacterLibrary
 
         }
 
-        public abstract bool InRange(int[,] locationVictim);
+        //public abstract bool InRange(int[,] locationVictim);
        
 
 }
