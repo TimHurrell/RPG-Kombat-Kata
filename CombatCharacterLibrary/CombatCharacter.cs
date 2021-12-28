@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
+public enum CombatType
+{
+    Melee,
+    Range
+}
+
 namespace CombatCharacterLibrary
 {
     public class CombatCharacter
@@ -16,6 +22,8 @@ namespace CombatCharacterLibrary
         public int Health { get; private set; } = 1000;
         public int Level { get; private set; } = 1;
         public bool Alive { get; private set; } = true;
+        public CombatType CType { get; set; }
+
 
         //public int[,] Location = new int[1,2] { { 0, 0 }};
 
@@ -26,7 +34,6 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
         {
-            //if (victim.Alive && victim.GetHashCode() != GetHashCode())
             if (victim.Alive && victim != this)
             {
                 decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(victim.Level);

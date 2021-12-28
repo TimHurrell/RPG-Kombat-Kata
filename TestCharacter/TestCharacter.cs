@@ -144,6 +144,18 @@ namespace TestCharacter
             Assert.Equal(900, combatCharacterDamaged.Health);
         }
 
+        [Fact]
+        public void IsRightCharacterType()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            combatCharacter.CType = CombatType.Melee;
+            Assert.Equal(0, (int)combatCharacter.CType);
+            Assert.NotEqual(1, (int)combatCharacter.CType);
+            combatCharacter.CType = CombatType.Range;
+            Assert.Equal(1, (int)combatCharacter.CType);
+            Assert.NotEqual(2, (int)combatCharacter.CType);
+        }
+
 
 
         //[Fact]
@@ -157,48 +169,48 @@ namespace TestCharacter
         //}
 
 
-    //    [Fact]
-    //    public void CharacterInRangeMeleeFalse()
-    //    {
-    //        CombatCharacter combatCharacter = new CombatCharacter();
-    //        CombatCharacter combatCharacterDamaged = new CombatCharacter();
-    //        combatCharacter.location[0, 0] = 3;
-    //        combatCharacter.location[0, 1] = 4;
-    //        Assert.False(combatCharacter.InRange(combatCharacterDamaged.location));
-    //    }
+        //    [Fact]
+        //    public void CharacterInRangeMeleeFalse()
+        //    {
+        //        CombatCharacter combatCharacter = new CombatCharacter();
+        //        CombatCharacter combatCharacterDamaged = new CombatCharacter();
+        //        combatCharacter.location[0, 0] = 3;
+        //        combatCharacter.location[0, 1] = 4;
+        //        Assert.False(combatCharacter.InRange(combatCharacterDamaged.location));
+        //    }
 
 
-    //    [Fact]
-    //    public void CharacterInRangeMeleeTrue()
-    //    {
-    //        CombatCharacter combatCharacter = new CombatCharacter();
-    //        CombatCharacter combatCharacterDamaged = new CombatCharacter();
-    //        combatCharacter.location[0, 0] = 1;
-    //        combatCharacter.location[0, 1] = 1;
-    //        Assert.True(combatCharacter.InRange(combatCharacterDamaged.location));
-    //    }
+        //    [Fact]
+        //    public void CharacterInRangeMeleeTrue()
+        //    {
+        //        CombatCharacter combatCharacter = new CombatCharacter();
+        //        CombatCharacter combatCharacterDamaged = new CombatCharacter();
+        //        combatCharacter.location[0, 0] = 1;
+        //        combatCharacter.location[0, 1] = 1;
+        //        Assert.True(combatCharacter.InRange(combatCharacterDamaged.location));
+        //    }
 
 
-    //    [Fact]
-    //    public void CharacterInRangeRangedTrue()
-    //    {
-    //        CombatCharacter combatCharacter = new RangedCharacter();
-    //        CombatCharacter combatCharacterDamaged = new RangedCharacter();
-    //        combatCharacter.location[0, 0] = 3;
-    //        combatCharacter.location[0, 1] = 4;
-    //        Assert.True(combatCharacter.InRange(combatCharacterDamaged.location));
-    //    }
+        //    [Fact]
+        //    public void CharacterInRangeRangedTrue()
+        //    {
+        //        CombatCharacter combatCharacter = new RangedCharacter();
+        //        CombatCharacter combatCharacterDamaged = new RangedCharacter();
+        //        combatCharacter.location[0, 0] = 3;
+        //        combatCharacter.location[0, 1] = 4;
+        //        Assert.True(combatCharacter.InRange(combatCharacterDamaged.location));
+        //    }
 
 
-    //    [Fact]
-    //    public void CharacterInRangeRangedFalse()
-    //    {
-    //        RangedCharacter combatCharacter = new RangedCharacter();
-    //        RangedCharacter combatCharacterDamaged = new RangedCharacter();
-    //        combatCharacter.location[0, 0] = 15;
-    //        combatCharacter.location[0, 1] = 20;
-    //        Assert.False(combatCharacter.InRange(combatCharacterDamaged.location));
-    //    }
+        //    [Fact]
+        //    public void CharacterInRangeRangedFalse()
+        //    {
+        //        RangedCharacter combatCharacter = new RangedCharacter();
+        //        RangedCharacter combatCharacterDamaged = new RangedCharacter();
+        //        combatCharacter.location[0, 0] = 15;
+        //        combatCharacter.location[0, 1] = 20;
+        //        Assert.False(combatCharacter.InRange(combatCharacterDamaged.location));
+        //    }
     }
 
 
