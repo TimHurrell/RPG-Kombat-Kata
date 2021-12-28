@@ -26,7 +26,8 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
         {
-            if (victim.Alive && victim.GetHashCode() != GetHashCode())
+            //if (victim.Alive && victim.GetHashCode() != GetHashCode())
+            if (victim.Alive && victim != this)
             {
                 decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(victim.Level);
                 victim.Health -= (int)weighteddamage;
@@ -46,7 +47,7 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter Heals(CombatCharacter patient, int amountOfHealth)
         {
-            if (patient.Alive && patient.GetHashCode() == GetHashCode())
+            if (patient.Alive && patient == this)
             {
                 patient.Health += amountOfHealth;
                 patient.Health = patient.Health > 1000 ? patient.Health = 1000 : patient.Health;
