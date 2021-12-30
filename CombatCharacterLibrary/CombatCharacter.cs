@@ -32,11 +32,15 @@ namespace CombatCharacterLibrary
 
 
 
-        public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage)
+        public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage,int distance = 0)
         {
-            if (victim.Alive && victim != this)
+            if (victim.Alive && victim != this && InRange(distance) )
+               
             {
-                decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(victim.Level);
+
+
+                    decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(victim.Level);
+
                 victim.Health -= (int)weighteddamage;
 
 
@@ -82,8 +86,28 @@ namespace CombatCharacterLibrary
 
         }
 
-        //public abstract bool InRange(int[,] locationVictim);
-       
 
-}
+        public bool InRange(int distance=0)
+        {
+            int range = 0;
+            switch (CType)
+            {
+                case CombatType.Melee:
+                    range = 2;
+                    break;
+                case CombatType.Range:
+                    range = 20;
+                    break;
+                default:
+                    break;
+            }
+            return range >= distance;
+           // var distance = Math.Sqrt((Math.Pow(locationVictim[0, 0] - location[0, 0], 2) + Math.Pow(locationVictim[0, 1] - location[0, 1], 2)));
+           // return (int)distance <= range;
+        }
+
+        //public abstract bool InRange(int[,] locationVictim);
+
+
+    }
 }
