@@ -221,5 +221,26 @@ namespace TestCharacter
         }
 
 
+        [Fact]
+        public void DamageFalseAsOutofRangeRanged()
+        {
+            var combatCharacter = new CombatCharacter(1000, 6, true);
+            var combatCharacterDamaged = new CombatCharacter(1000, 6, true);
+            combatCharacter.CType = CombatType.Range;
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100, 21);
+            Assert.Equal(1000, combatCharacterDamaged.Health);
+        }
+
+        [Fact]
+        public void DamageTrueAsInRangeRanged()
+        {
+            var combatCharacter = new CombatCharacter(1000, 6, true);
+            var combatCharacterDamaged = new CombatCharacter(1000, 6, true);
+            combatCharacter.CType = CombatType.Range;
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100, 20);
+            Assert.Equal(900, combatCharacterDamaged.Health);
+        }
+
+
     }
 }
