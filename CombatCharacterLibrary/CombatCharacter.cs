@@ -7,8 +7,20 @@ public enum CombatType
     Range
 }
 
+public enum FactionType
+{
+    Freemason,
+    OpusDei,
+    Illuminati,
+    TheRobins
+}
+
+
+
 namespace CombatCharacterLibrary
 {
+
+
     public class CombatCharacter
     {
         public CombatCharacter() { }
@@ -23,12 +35,9 @@ namespace CombatCharacterLibrary
         public int Level { get; private set; } = 1;
         public bool Alive { get; private set; } = true;
         public CombatType CType { get; set; }
+        public FactionType FType { get; set; }
 
-
-        //public int[,] Location = new int[1,2] { { 0, 0 }};
-
-
-        //public abstract int range { get; set; }
+        public HashSet<string> Faction { get; set; }
 
 
 
@@ -102,11 +111,8 @@ namespace CombatCharacterLibrary
                     break;
             }
             return range >= distance;
-           // var distance = Math.Sqrt((Math.Pow(locationVictim[0, 0] - location[0, 0], 2) + Math.Pow(locationVictim[0, 1] - location[0, 1], 2)));
-           // return (int)distance <= range;
         }
 
-        //public abstract bool InRange(int[,] locationVictim);
 
 
     }
