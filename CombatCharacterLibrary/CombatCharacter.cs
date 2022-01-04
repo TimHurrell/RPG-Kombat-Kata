@@ -43,7 +43,7 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage,int distance = 0)
         {
-            if (victim.Alive && victim != this && InRange(distance) )
+            if (victim.Alive && victim != this && InRange(distance) && ! Faction.Overlaps(victim.Faction))
                
             {
 
@@ -67,7 +67,7 @@ namespace CombatCharacterLibrary
 
         public CombatCharacter Heals(CombatCharacter patient, int amountOfHealth)
         {
-            if (patient.Alive && patient == this)
+            if (patient.Alive && (patient == this || Faction.Overlaps(patient.Faction)))
             {
                 patient.Health += amountOfHealth;
                 patient.Health = patient.Health > 1000 ? patient.Health = 1000 : patient.Health;

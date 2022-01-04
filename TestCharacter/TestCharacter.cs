@@ -52,7 +52,7 @@ namespace TestCharacter
 
 
         [Fact]
-        public void EnhanceDifferentCharacterHealth()
+        public void EnhanceDifferentCharacterHealthButNotAlly()
         {
             CombatCharacter combatCharacter = new CombatCharacter();
             CombatCharacter combatCharacterEnhanced = new CombatCharacter();
@@ -253,6 +253,59 @@ namespace TestCharacter
             Assert.Contains("Freemason", combatCharacter.Faction);
             combatCharacter.leave(FactionType.Freemason);
             Assert.DoesNotContain("Freemason", combatCharacter.Faction);
+        }
+
+
+        [Fact]
+        public void DamageToAllyCharacterHealth()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacter.join(FactionType.TheRobins);
+            combatCharacter.join(FactionType.Freemason);
+            combatCharacterDamaged.join(FactionType.TheRobins);
+            combatCharacterDamaged.join(FactionType.OpusDei);
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            Assert.Equal(1000, combatCharacterDamaged.Health);
+        }
+
+
+        [Fact]
+        public void DamageToNonAllyCharacterHealth()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacter.join(FactionType.TheRobins);
+            combatCharacter.join(FactionType.Freemason);
+            combatCharacterDamaged.join(FactionType.OpusDei);
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            Assert.Equal(900, combatCharacterDamaged.Health);
+        }
+
+        [Fact]
+        public void DamageToNonAllyCharacterHealthWhenBlank()
+        {
+            CombatCharacter combatCharacter = new CombatCharacter();
+            CombatCharacter combatCharacterDamaged = new CombatCharacter();
+            combatCharacterDamaged.join(FactionType.OpusDei);
+            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            Assert.Equal(900, combatCharacterDamaged.Health);
+        }
+
+
+        [Fact]
+        public void EnhanceCharacterAllyHealth()
+        {
+            var combatCharacter = new CombatCharacter(1000, 6, true);
+            var combatCharacterEnhanced = new CombatCharacter(900, 6, true);
+            combatCharacter.Heals(combatCharacterEnhanced, 100);
+            Assert.Equal(900, combatCharacterEnhanced.Health);
+            combatCharacter.join(FactionType.TheRobins);          
+            combatCharacter.Heals(combatCharacterEnhanced, 100);
+            Assert.Equal(900, combatCharacterEnhanced.Health);
+            combatCharacterEnhanced.join(FactionType.TheRobins);
+            combatCharacter.Heals(combatCharacterEnhanced, 100);
+            Assert.Equal(1000, combatCharacterEnhanced.Health);
         }
 
 
