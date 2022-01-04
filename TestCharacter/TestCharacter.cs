@@ -246,12 +246,13 @@ namespace TestCharacter
         public void FactionMembership()
         {
             var combatCharacter = new CombatCharacter(1000, 6, true);
-            combatCharacter.FType = FactionType.TheRobins;
-            Assert.Equal(3, (int)combatCharacter.FType);
-            Enum myColors = combatCharacter.FType;
-
-            combatCharacter.Faction.Add("TheRobins");
-            //Assert.Contains("TheRobins", combatCharacter.Faction);
+            Assert.Empty(combatCharacter.Faction);
+            combatCharacter.join(FactionType.TheRobins);
+            combatCharacter.join(FactionType.Freemason);
+            Assert.Contains("TheRobins", combatCharacter.Faction);
+            Assert.Contains("Freemason", combatCharacter.Faction);
+            combatCharacter.leave(FactionType.Freemason);
+            Assert.DoesNotContain("Freemason", combatCharacter.Faction);
         }
 
 

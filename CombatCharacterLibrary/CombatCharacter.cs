@@ -37,7 +37,7 @@ namespace CombatCharacterLibrary
         public CombatType CType { get; set; }
         public FactionType FType { get; set; }
 
-        public HashSet<string> Faction { get; set; }
+        public HashSet<string> Faction { get; private set; } = new HashSet<string>();
 
 
 
@@ -113,6 +113,18 @@ namespace CombatCharacterLibrary
             return range >= distance;
         }
 
+
+        public void join(FactionType faction)
+        {
+            Faction.Add(faction.ToString());
+        }
+
+
+
+        public void leave(FactionType faction)
+        {
+            Faction.Remove(faction.ToString());
+        }
 
 
     }
