@@ -37,7 +37,8 @@ namespace CombatCharacterLibrary
         public CombatType CType { get; set; }
         public FactionType FType { get; set; }
 
-        public HashSet<string> Faction { get; private set; } = new HashSet<string>();
+        //public HashSet<string> Faction { get; private set; } = new HashSet<string>();
+        public HashSet<Enum> Faction { get; private set; } = new HashSet<Enum>();
 
 
 
@@ -116,14 +117,16 @@ namespace CombatCharacterLibrary
 
         public void join(FactionType faction)
         {
-            Faction.Add(faction.ToString());
+            //Faction.Add(faction.ToString());
+            Faction.Add(faction);
         }
 
 
 
         public void leave(FactionType faction)
         {
-            Faction.Remove(faction.ToString());
+            //Faction.Remove(faction.ToString());
+            Faction.Remove(faction);
         }
 
 

@@ -249,10 +249,11 @@ namespace TestCharacter
             Assert.Empty(combatCharacter.Faction);
             combatCharacter.join(FactionType.TheRobins);
             combatCharacter.join(FactionType.Freemason);
-            Assert.Contains("TheRobins", combatCharacter.Faction);
-            Assert.Contains("Freemason", combatCharacter.Faction);
+            Assert.Contains(FactionType.TheRobins, combatCharacter.Faction);
+            Assert.Contains(FactionType.Freemason, combatCharacter.Faction);
             combatCharacter.leave(FactionType.Freemason);
-            Assert.DoesNotContain("Freemason", combatCharacter.Faction);
+            Assert.DoesNotContain(FactionType.Freemason, combatCharacter.Faction);
+            Assert.DoesNotContain(FactionType.Illuminati, combatCharacter.Faction);
         }
 
 
