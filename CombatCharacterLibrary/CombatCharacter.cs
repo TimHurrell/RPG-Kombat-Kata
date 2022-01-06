@@ -17,23 +17,20 @@ public enum FactionType
 
 
 
-namespace CombatCharacterLibrary
+namespace CombatObjectLibrary
 {
 
 
-    public class CombatCharacter
+    public class Character : ICombatObject
     {
-        public CombatCharacter() { }
-        public CombatCharacter(int health, int level, bool alive)
+        public Character() { }
+        public Character(int health, int level, bool alive)
         {
             Health = health;
             Level = level;
             Alive = alive;
         }
 
-        public int Health { get; private set; } = 1000;
-        public int Level { get; private set; } = 1;
-        public bool Alive { get; private set; } = true;
         public CombatType CType { get; set; }
         public FactionType FType { get; set; }
 
@@ -42,7 +39,7 @@ namespace CombatCharacterLibrary
 
 
 
-        public CombatCharacter CausesDamage(CombatCharacter victim, int amountOfDamage,int distance = 0)
+        public Character CausesDamage(Character victim, int amountOfDamage,int distance = 0)
         {
             if (victim.Alive && victim != this && InRange(distance) && ! Faction.Overlaps(victim.Faction))
                
@@ -66,7 +63,7 @@ namespace CombatCharacterLibrary
         }
 
 
-        public CombatCharacter Heals(CombatCharacter patient, int amountOfHealth)
+        public Character Heals(Character patient, int amountOfHealth)
         {
             if (patient.Alive && (patient == this || Faction.Overlaps(patient.Faction)))
             {
