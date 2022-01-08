@@ -158,17 +158,6 @@ namespace TestCharacter
 
 
 
-        //[Fact]
-        //public void DistanceOfCharacter()
-        //{
-        //    Character combatCharacter = new Character();
-        //    Character combatCharacterDamaged = new Character();
-        //    combatCharacter.location[0, 0] = 3;
-        //    combatCharacter.location[0, 1] = 4;
-        //    Assert.Equal(5, combatCharacter.GetDistanceFromVictim(combatCharacterDamaged.location));
-        //}
-
-
         [Fact]
         public void CharacterInRangeMeleeFalse()
         {
@@ -308,6 +297,18 @@ namespace TestCharacter
             combatCharacter.Heals(combatCharacterEnhanced, 100);
             Assert.Equal(1000, combatCharacterEnhanced.Health);
         }
+
+
+        [Fact]
+        public void CurrentHealthOfThing()
+        {
+            ICombatObject combatThing = new Thing(2000);
+            Assert.Equal(2000, combatThing.Health);
+            Assert.True(combatThing.Alive);
+            Assert.Contains(FactionN.Neutral, combatThing.Faction);
+        }
+
+      
 
 
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-public enum CombatType
+﻿public enum CombatType
 {
     Melee,
     Range
@@ -31,11 +28,10 @@ namespace CombatObjectLibrary
             Alive = alive;
         }
 
-        public CombatType CType { get; set; }
-        public FactionType FType { get; set; }
+        public int Level { get; set; } = 1;
 
-        //public HashSet<string> Faction { get; private set; } = new HashSet<string>();
-        public HashSet<Enum> Faction { get; private set; } = new HashSet<Enum>();
+        public CombatType CType { get; set; }
+       
 
 
 
