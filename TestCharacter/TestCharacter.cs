@@ -299,15 +299,7 @@ namespace TestCharacter
         }
 
 
-        [Fact]
-        public void CurrentHealthOfThing()
-        {
-            ICombatObject combatThing = new Thing(2000);
-            Assert.Equal(2000, combatThing.Health);
-            Assert.True(combatThing.Alive);
-            Assert.Contains(FactionN.Neutral, combatThing.Faction);
-        }
-
+      
       
 
 

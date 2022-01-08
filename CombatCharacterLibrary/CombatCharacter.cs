@@ -59,6 +59,27 @@ namespace CombatObjectLibrary
         }
 
 
+        public Thing CausesDamage(Thing victim, int amountOfDamage, int distance = 0)
+        {
+            if (victim.Alive && InRange(distance) && !Faction.Overlaps(victim.Faction))
+
+            {
+
+                victim.Health -= amountOfDamage;
+
+
+                victim.Health = victim.Health < 0 ? victim.Health = 0 : victim.Health;
+
+                victim.Alive = victim.Health == 0 ? victim.Alive = false : victim.Alive;
+
+            }
+
+
+            return victim;
+
+        }
+
+
         public Character Heals(Character patient, int amountOfHealth)
         {
             if (patient.Alive && (patient == this || Faction.Overlaps(patient.Faction)))
