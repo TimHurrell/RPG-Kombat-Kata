@@ -35,7 +35,7 @@ namespace TestCharacter
         {
             Character combatCharacter = new Character();
             Character combatCharacterDamaged = new Character();
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100);
             Assert.Equal(900, combatCharacterDamaged.Health);
         }
 
@@ -45,7 +45,7 @@ namespace TestCharacter
         {
             Character combatCharacter = new Character();
             Character combatCharacterDamaged = new Character();
-            combatCharacter.CausesDamage(combatCharacterDamaged, 1100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 1100);
             Assert.False(combatCharacterDamaged.Alive);
         }
 
@@ -56,7 +56,7 @@ namespace TestCharacter
         {
             Character combatCharacter = new Character();
             Character combatCharacterEnhanced = new Character();
-            combatCharacter.CausesDamage(combatCharacterEnhanced, 100);
+            combatCharacterEnhanced.IsDamaged(combatCharacter, 100);
             combatCharacter.Heals(combatCharacterEnhanced, 100);
             Assert.Equal(900, combatCharacterEnhanced.Health);
         }
@@ -66,7 +66,7 @@ namespace TestCharacter
         public void DamageToSelfCharacterHealth()
         {
             Character combatCharacter = new Character();
-            combatCharacter.CausesDamage(combatCharacter, 100);
+            combatCharacter.IsDamaged(combatCharacter, 100);
             Assert.Equal(1000, combatCharacter.Health);
         }
 
@@ -76,7 +76,7 @@ namespace TestCharacter
         {
             Character combatCharacter = new Character();
             Character combatCharacterEnhanced = new Character();
-            combatCharacter.CausesDamage(combatCharacterEnhanced, 100);
+            combatCharacter.IsDamaged(combatCharacterEnhanced, 100);
             combatCharacterEnhanced.Heals(combatCharacterEnhanced, 100);
             Assert.Equal(1000, combatCharacterEnhanced.Health);
         }
@@ -120,7 +120,7 @@ namespace TestCharacter
         {
             Character combatCharacterDamaged = new Character();
             var combatCharacter = new Character(1000, 6, true);
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100);
             Assert.Equal(850, combatCharacterDamaged.Health);
         }
 
@@ -130,7 +130,7 @@ namespace TestCharacter
         {
             Character combatCharacter = new Character();
             var combatCharacterDamaged = new Character(1000, 6, true);
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100);
             Assert.Equal(950, combatCharacterDamaged.Health);
         }
 
@@ -140,7 +140,7 @@ namespace TestCharacter
         {
             var combatCharacter = new Character(1000, 6, true);
             var combatCharacterDamaged = new Character(1000, 5, true);
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100);
             Assert.Equal(900, combatCharacterDamaged.Health);
         }
 
@@ -162,30 +162,34 @@ namespace TestCharacter
         public void CharacterInRangeMeleeFalse()
         {
             Character combatCharacter = new Character();
+            Character combatCharacterDamaged = new Character();
             combatCharacter.CType = CombatType.Melee;
-            Assert.False(combatCharacter.InRange(3));
+            Assert.False(combatCharacterDamaged.InRange(combatCharacter,3));
         }
         [Fact]
         public void CharacterInRangeMeleeTrue()
         {
             Character combatCharacter = new Character();
+            Character combatCharacterDamaged = new Character();
             combatCharacter.CType = CombatType.Melee;
-            Assert.True(combatCharacter.InRange(2));
+            Assert.True(combatCharacterDamaged.InRange(combatCharacter, 2));
         }
 
         [Fact]
         public void CharacterInRangeRangedFalse()
         {
             Character combatCharacter = new Character();
+            Character combatCharacterDamaged = new Character();
             combatCharacter.CType = CombatType.Range;
-            Assert.False(combatCharacter.InRange(21));
+            Assert.False(combatCharacterDamaged.InRange(combatCharacter, 21));
         }
         [Fact]
         public void CharacterInRangeRangedTrue()
         {
             Character combatCharacter = new Character();
+            Character combatCharacterDamaged = new Character();
             combatCharacter.CType = CombatType.Range;
-            Assert.True(combatCharacter.InRange(20));
+            Assert.True(combatCharacterDamaged.InRange(combatCharacter,20));
         }
 
 
@@ -195,7 +199,7 @@ namespace TestCharacter
             var combatCharacter = new Character(1000, 6, true);
             var combatCharacterDamaged = new Character(1000, 6, true);
             combatCharacter.CType = CombatType.Melee;
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100,3);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100,3);
             Assert.Equal(1000, combatCharacterDamaged.Health);
         }
 
@@ -205,7 +209,7 @@ namespace TestCharacter
             var combatCharacter = new Character(1000, 6, true);
             var combatCharacterDamaged = new Character(1000, 6, true);
             combatCharacter.CType = CombatType.Melee;
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100, 2);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100, 2);
             Assert.Equal(900, combatCharacterDamaged.Health);
         }
 
@@ -216,7 +220,7 @@ namespace TestCharacter
             var combatCharacter = new Character(1000, 6, true);
             var combatCharacterDamaged = new Character(1000, 6, true);
             combatCharacter.CType = CombatType.Range;
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100, 21);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100, 21);
             Assert.Equal(1000, combatCharacterDamaged.Health);
         }
 
@@ -226,7 +230,7 @@ namespace TestCharacter
             var combatCharacter = new Character(1000, 6, true);
             var combatCharacterDamaged = new Character(1000, 6, true);
             combatCharacter.CType = CombatType.Range;
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100, 20);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100, 20);
             Assert.Equal(900, combatCharacterDamaged.Health);
         }
 
@@ -255,7 +259,7 @@ namespace TestCharacter
             combatCharacter.join(FactionType.Freemason);
             combatCharacterDamaged.join(FactionType.TheRobins);
             combatCharacterDamaged.join(FactionType.OpusDei);
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100);
             Assert.Equal(1000, combatCharacterDamaged.Health);
         }
 
@@ -268,7 +272,7 @@ namespace TestCharacter
             combatCharacter.join(FactionType.TheRobins);
             combatCharacter.join(FactionType.Freemason);
             combatCharacterDamaged.join(FactionType.OpusDei);
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100);
             Assert.Equal(900, combatCharacterDamaged.Health);
         }
 
@@ -278,7 +282,7 @@ namespace TestCharacter
             Character combatCharacter = new Character();
             Character combatCharacterDamaged = new Character();
             combatCharacterDamaged.join(FactionType.OpusDei);
-            combatCharacter.CausesDamage(combatCharacterDamaged, 100);
+            combatCharacterDamaged.IsDamaged(combatCharacter, 100);
             Assert.Equal(900, combatCharacterDamaged.Health);
         }
 

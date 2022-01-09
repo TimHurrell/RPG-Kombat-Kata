@@ -1,4 +1,9 @@
-﻿public enum CombatType
+﻿
+
+using System.Collections.Generic;
+using System;
+
+public enum CombatType
 {
     Melee,
     Range
@@ -31,58 +36,41 @@ namespace CombatObjectLibrary
         public int Level { get; set; } = 1;
 
         public CombatType CType { get; set; }
-       
+
+
+        public FactionType FType { get; set; }
+
+        public HashSet<Enum> Faction { get; private set; } = new HashSet<Enum>();
 
 
 
-        public Character CausesDamage(Character victim, int amountOfDamage,int distance = 0)
+
+        public override void IsDamaged(Character attacker, int amountOfDamage,int distance = 0)
         {
-            if (victim.Alive && victim != this && InRange(distance) && ! Faction.Overlaps(victim.Faction))
+            if (Alive && attacker.Alive && attacker != this && InRange(attacker,distance) && ! Faction.Overlaps(attacker.Faction))
                
             {
 
 
-                    decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(victim.Level);
+                decimal weighteddamage = amountOfDamage * DamageFactorMultiplier(attacker.Level);
 
-                victim.Health -= (int)weighteddamage;
+                Health -= (int)weighteddamage;
 
 
-                victim.Health = victim.Health < 0 ? victim.Health = 0 : victim.Health;
+                Health = Health < 0 ? Health = 0 : Health;
 
-                victim.Alive = victim.Health == 0 ? victim.Alive = false : victim.Alive;
+                Alive = Health == 0 ? Alive = false : Alive;
                 
             }
 
 
-            return victim;
-
         }
 
-
-        public Thing CausesDamage(Thing victim, int amountOfDamage, int distance = 0)
-        {
-            if (victim.Alive && InRange(distance) && !Faction.Overlaps(victim.Faction))
-
-            {
-
-                victim.Health -= amountOfDamage;
-
-
-                victim.Health = victim.Health < 0 ? victim.Health = 0 : victim.Health;
-
-                victim.Alive = victim.Health == 0 ? victim.Alive = false : victim.Alive;
-
-            }
-
-
-            return victim;
-
-        }
 
 
         public Character Heals(Character patient, int amountOfHealth)
         {
-            if (patient.Alive && (patient == this || Faction.Overlaps(patient.Faction)))
+            if (Alive && patient.Alive && (patient == this || Faction.Overlaps(patient.Faction)))
             {
                 patient.Health += amountOfHealth;
                 patient.Health = patient.Health > 1000 ? patient.Health = 1000 : patient.Health;
@@ -91,14 +79,14 @@ namespace CombatObjectLibrary
         }
 
 
-        public decimal DamageFactorMultiplier(int LevelVictim)
+        public decimal DamageFactorMultiplier(int LevelAttacker)
         {
             decimal damageFactor;
-            if (Level - LevelVictim >= 5)
+            if (LevelAttacker -  Level >= 5)
             {
                 damageFactor = 1.5M;
             }
-            else if (Level - LevelVictim <= -5)
+            else if (LevelAttacker - Level <= -5)
             {
                 damageFactor = 0.5M;
             }
@@ -111,22 +99,6 @@ namespace CombatObjectLibrary
         }
 
 
-        public bool InRange(int distance=0)
-        {
-            int range = 0;
-            switch (CType)
-            {
-                case CombatType.Melee:
-                    range = 2;
-                    break;
-                case CombatType.Range:
-                    range = 20;
-                    break;
-                default:
-                    break;
-            }
-            return range >= distance;
-        }
 
 
         public void join(FactionType faction)

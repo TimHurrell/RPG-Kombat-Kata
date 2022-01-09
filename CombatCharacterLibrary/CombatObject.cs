@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+
 
 
 
@@ -16,9 +16,26 @@ namespace CombatObjectLibrary
         public int Health { get; set; } = 1000;
         public bool Alive { get; set; } = true;
 
-        public FactionType FType { get; set; }
 
-        public HashSet<Enum> Faction { get; private set; } = new HashSet<Enum>();
+        public abstract void IsDamaged(Character attacker, int amountOfDamage, int distance = 0);
+
+
+        public bool InRange(Character attacker, int distance = 0)
+        {
+            int range = 0;
+            switch (attacker.CType)
+            {
+                case CombatType.Melee:
+                    range = 2;
+                    break;
+                case CombatType.Range:
+                    range = 20;
+                    break;
+                default:
+                    break;
+            }
+            return range >= distance;
+        }
 
 
 
